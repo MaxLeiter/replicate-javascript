@@ -9,6 +9,7 @@ const hardware = require("./lib/hardware");
 const models = require("./lib/models");
 const predictions = require("./lib/predictions");
 const trainings = require("./lib/trainings");
+const webhooks = require("./lib/webhooks");
 
 const packageJSON = require("./package.json");
 
@@ -84,6 +85,14 @@ class Replicate {
       get: trainings.get.bind(this),
       cancel: trainings.cancel.bind(this),
       list: trainings.list.bind(this),
+    };
+
+    this.webhooks = {
+      default: {
+        secrets: {
+          get: webhooks.default.secrets.get.bind(this),
+        },
+      },
     };
   }
 
